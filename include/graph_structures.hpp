@@ -176,7 +176,6 @@ public:
 
 
         for (int count = 0; count < nodes.size() - 1; ++count) {
-            // Picking the minimum key vertex from the set of vertices not yet in MST
             int u = minKey(key, inMST);
             inMST.insert(u);
 
@@ -184,7 +183,9 @@ public:
             if (parent[u] != -1) {
                 Edge e(*findNode(parent[u]), *findNode(u));
                 result.includedEdges.push_back(e);
-                result.totalWeight += 1; // Assuming a weight of 1 for all edges, modify as needed
+                result.totalWeight += 1; // Assuming a weight of 1 for all edges
+
+                std::cout << "Adding edge to MST: " << parent[u] << "-" << u << std::endl;
             }
 
             // Update key values and parent index of the adjacent vertices of the picked vertex
